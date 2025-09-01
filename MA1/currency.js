@@ -1,4 +1,3 @@
-// ===== Currency list (your existing feature, with KMP search) =====
 const inputEl = document.getElementById("currencyInput");
 const addBtn = document.getElementById("addButton");
 const searchEl = document.getElementById("searchInput");
@@ -6,7 +5,7 @@ const listEl = document.getElementById("currencyList");
 
 const items = [];
 
-// KMP substring search
+// KMP search
 function kmpIndexOf(text, pattern) {
   if (pattern.length === 0) return 0;
 
@@ -82,12 +81,10 @@ addBtn.addEventListener("click", addCurrency);
 inputEl.addEventListener("keydown", (e) => { if (e.key === "Enter") addCurrency(); });
 searchEl.addEventListener("input", renderCurrencies);
 
-// Seed examples
 items.push("Norwegian Kroner");
 items.push("Swedish Kronor");
 renderCurrencies();
 
-// ===== Country populations (new feature) =====
 const BASE_URL = "https://d6wn6bmjj722w.population.io/1.0";
 
 const countrySearchEl = document.getElementById("countrySearch");
