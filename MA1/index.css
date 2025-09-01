@@ -1,0 +1,133 @@
+/* index.css — home page styles */
+:root{
+  --bg: #fff;
+  --fg: #1f2328;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --surface: #fafafa;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--fg);
+  background: var(--surface);
+}
+
+/* Layout */
+.container{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Header / Nav */
+.site-header{
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-title{
+  font-size: 20px;
+  margin: 12px 0;
+}
+.site-nav{
+  display: flex;
+  gap: 12px;
+}
+.nav-link{
+  text-decoration: none;
+  color: var(--fg);
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.nav-link[aria-current="page"]{
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* Cards & grid */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  margin-block: 16px 24px;
+}
+.card{
+  grid-column: span 12;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+@media (min-width: 720px){
+  .card{ grid-column: span 6; }
+}
+.card__title{
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+/* Intro card (portrait + text) */
+.intro{
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.portrait{
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.person-name{
+  margin: 0;
+  font-size: 22px;
+}
+.person-role{
+  margin: 4px 0 0 0;
+  color: var(--muted);
+}
+
+/* Lists */
+.list{
+  margin: 0;
+  padding-left: 18px;
+}
+.list li{ margin: 4px 0; }
+
+/* Footer */
+.site-footer{
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.site-footer .container{ padding-block: 16px; }
+.muted{ color: var(--muted); }
+
+/* Optional: respect system dark mode (variables only) */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0f14;
+    --fg: #e5e7eb;
+    --muted: #9aa3af;
+    --border: #222a34;
+    --surface: #0a0d12;
+    --shadow: none;
+  }
+}

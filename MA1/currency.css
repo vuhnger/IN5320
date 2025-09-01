@@ -1,0 +1,142 @@
+/* currency.css — currency & population page styles */
+:root{
+  --bg: #fff;
+  --fg: #1f2328;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --surface: #fafafa;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* Header / Nav */
+.site-header{
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-title{
+  font-size: 20px;
+  margin: 12px 0;
+}
+.site-nav{
+  display: flex;
+  gap: 12px;
+}
+.nav-link{
+  text-decoration: none;
+  color: var(--fg);
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.nav-link[aria-current="page"]{
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--fg);
+  background: var(--surface);
+}
+
+/* Utility */
+.muted{ color: var(--muted); }
+
+/* Controls */
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+}
+input[type="text"], select, button{
+  font: inherit;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+input[type="text"]:focus,
+select:focus,
+button:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.06);
+}
+button{
+  cursor: pointer;
+  border-color: #d1d5db;
+}
+
+/* Currency list (ul) */
+ul#currencyList{
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+#currencyList li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  margin: 6px 0;
+}
+
+/* Country table styles */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+  box-shadow: var(--shadow);
+}
+thead th{
+  text-align: left;
+  font-weight: 600;
+  padding: 10px;
+  background: #f9fafb;
+  border-bottom: 1px solid var(--border);
+}
+tbody td{
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+tbody tr:last-child td{ border-bottom: none; }
+tbody tr:hover{ background: #fbfbfb; }
+
+/* Status text */
+.status{ margin-top: 8px; color: var(--muted); }
+
+/* Utility spacing for currency/country pages */
+.section{ margin-top: 12px; }
+hr{ border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+
+/* Optional: respect system dark mode (kept subtle) */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0f14;
+    --fg: #e5e7eb;
+    --muted: #9aa3af;
+    --border: #222a34;
+    --surface: #0a0d12;
+    --shadow: none;
+  }
+  thead th{ background: #12161c; }
+  tbody tr:hover{ background: #11161b; }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Currency & Country Populations</title>
+  <link rel="stylesheet" href="currency.css"/>
+  <header class="site-header">
+      <div class="container header-inner">
+        <nav class="site-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html" aria-current="page">Home</a>
+          <a class="nav-link" href="currency.html">Currency</a>
+        </nav>
+      </div>
+    </header>
+</head>
+<body>
+  <h1>Currency List</h1>
+  <div class="muted">
+    This search bar supports substring search (via KMP). A search for “kron” matches
+    both “Norwegian Kroner” and “Swedish Kronor”.
+  </div>
+
+  <div class="row" style="margin-top:8px">
+    <input id="searchInput" type="text" placeholder="Search currencies"/>
+  </div>
+
+  <div class="currency row" style="margin-top:8px">
+    <input id="currencyInput" type="text" placeholder="Currency"/>
+    <button id="addButton">Add</button>
+  </div>
+
+  <ul id="currencyList"></ul>
+
+  <hr style="margin:24px 0"/>
+
+  <h2>Country Populations</h2>
+  <div class="row">
+    <input id="countrySearch" type="text" placeholder="Search countries…"/>
+    <select id="sortSelect" title="Sort">
+      <option value="population:desc">Size ↓ (default)</option>
+      <option value="population:asc">Size ↑</option>
+      <option value="country:asc">Name A–Z</option>
+      <option value="country:desc">Name Z–A</option>
+    </select>
+    <span class="muted">Shows first 10 ish after filter + sort.</span>
+  </div>
+
+  <table id="countryTable" aria-label="Country populations">
+    <thead>
+      <tr><th>#</th><th>Country</th><th>Population (today)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div id="countryStatus" class="status muted"></div>
+
+  <script src="currency.js"></script>
+</body>
+</html>
