@@ -1,5 +1,12 @@
 import React from 'react'
 import { useDataQuery } from '@dhis2/app-runtime'
+import {
+    Table,
+    TableHead,
+    TableBody,
+    TableRow,
+    TableCell,
+} from '@dhis2/ui'
 
 const dataQuery = {
     dataSets: {
@@ -23,17 +30,20 @@ const dataQuery = {
 }
 
 function mergeData(data) {
-    return data.dataSets.dataSetElements.map(d => {
-        let matchedValue = data.dataValueSets.dataValues.find(dataValues => {
-            if (dataValues.dataElement == d.dataElement.id) {
-                return true
-            }
-        })
+    if (!data?.dataSets?.dataSetElements?.length) {
+        return []
+    }
+
+    return data.dataSets.dataSetElements.map(element => {
+        const matchedValue =
+            data?.dataValueSets?.dataValues?.find(
+                value => value.dataElement === element.dataElement.id
+            ) ?? {}
 
         return {
-            displayName: d.dataElement.displayName,
-            id: d.dataElement.id,
-            value: matchedValue.value,
+            displayName: element.dataElement.displayName,
+            id: element.dataElement.id,
+            value: matchedValue.value ?? 'No value',
         }
     })
 }
@@ -49,12 +59,33 @@ export function Browse() {
         return <span>Loading...</span>
     }
 
-    if (data) {
-        //console.log(data)
+    const dataElements = mergeData(data)
+
+    if (!dataElements.length) {
+        return <h1>No data elements found for this dataset.</h1>
     }
 
-    return <h1>
-      Browse
-      <pre>{JSON.stringify(mergeData(data), null, 4)}</pre>
-    </h1>
+    return (
+        <div>
+            <h1>Browse</h1>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Data element</TableCell>
+                        <TableCell>ID</TableCell>
+                        <TableCell>Value (2020)</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {dataElements.map(element => (
+                        <TableRow key={element.id}>
+                            <TableCell>{element.displayName}</TableCell>
+                            <TableCell>{element.id}</TableCell>
+                            <TableCell>{element.value}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </div>
+    )
 }

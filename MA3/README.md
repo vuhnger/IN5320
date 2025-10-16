@@ -43,3 +43,28 @@ You can learn more about the platform in the [DHIS2 Application Platform Documen
 You can learn more about the runtime in the [DHIS2 Application Runtime Documentation](https://runtime.dhis2.nu/).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## DHIS2 Training Environment
+
+This project targets the DHIS2 course environment described in the official tutorials:
+
+- [DHIS2 instance overview](https://dhis2-app-course.ifi.uio.no/learn/dhis2/getting-started/development-environment/dhis2-instance/)
+- [Development environment overview](https://dhis2-app-course.ifi.uio.no/learn/dhis2/getting-started/development-environment/)
+- [Local development setup guide](https://dhis2-app-course.ifi.uio.no/learn/dhis2/getting-started/development-environment/development-env-setup/)
+- [Project code walkthrough](https://dhis2-app-course.ifi.uio.no/learn/dhis2/getting-started/development-environment/project-code/)
+
+Follow the steps in the tutorials to start the DHIS2 portal, then sign in with:
+
+- **Username:** `admin`
+- **Password:** `district`
+
+Launching the training portal and logging in with the credentials above is required before the app can fetch datasets or submit values during development.
+
+## How to Run
+
+1. Install dependencies: `yarn install`
+2. Start the training portal in a separate terminal: `npx dhis-portal --target=https://data.research.dhis2.org/in5320/`
+3. Start the development server: `yarn start`
+4. (Optional) Run tests: `yarn test`
+5. Build a production bundle: `yarn build`
+6. Deploy the bundle to a DHIS2 instance: `yarn deploy` (requires a running instance and credentials)

@@ -1,39 +1,57 @@
-// Data Query with dynamic ID.
-const dataQuery = {
-    dataSets: {
-        resource: 'dataSets',
-        id: ({ id }) => id,
-        params: {
-            fields: ['dataSetElements[dataElement[id, displayName,created]'],
-            paging: false,
-        },
-    },
-}
+import React from 'react';
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  NoticeBox,
+} from '@dhis2/ui';
 
-// A component that takes a dataSet ID as a prop.
-export function DatasetsTable({ id }) {
-    /* 
-    A useDataQuery where we pass the id as a variable. Note that we also save the refetch
-    which allows us to run the query again at a later point.
-    */
-    const { loading, error, data, refetch } = useDataQuery(dataQuery, {
-        variables: {
-            id: id,
-        },
-    })
+export function DatasetsTable({ dataset }) {
+  if (!dataset) {
+    return <h2>Select a dataset to see details</h2>;
+  }
 
-    /* 
-    You can use useEffect to check if props change (and not just state).
-    We check if the ID prop has changed from the last run and then re-run the 
-    dataQuery with the new id to get fresh data when a user clicks on a new ID.
-    */
-    useEffect(() => {
-        refetch({ id: id })
-    }, [id])
+  const dataElements = (dataset.dataSetElements ?? [])
+    .map((element) => element.dataElement)
+    .filter(Boolean);
 
-    if (data) {
-        return {
-            /*Table*/
-        }
-    }
+  return (
+    <div>
+      <h2>{dataset.displayName}</h2>
+      <p>
+        <strong>ID:</strong> {dataset.id}
+      </p>
+      <p>
+        <strong>Created:</strong> {dataset.created}
+      </p>
+
+      {dataElements.length ? (
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Data element</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>Code</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {dataElements.map((element) => (
+              <TableRow key={element.id}>
+                <TableCell>{element.displayName}</TableCell>
+                <TableCell>{element.id}</TableCell>
+                <TableCell>{element.code ?? '—'}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <NoticeBox title="No data elements" warning>
+          This dataset does not expose any dataSetElements with the current
+          fields configuration.
+        </NoticeBox>
+      )}
+    </div>
+  );
 }
