@@ -1,0 +1,32 @@
+Write a query that searches for countries with the letter "a" in its name.
+https://dhis2-app-course.ifi.uio.no/api?search=a
+
+Write a query that searches for countries with a space in its name. (hint: HTML encodings)
+https://dhis2-app-course.ifi.uio.no/api?search=%20
+
+Write a query that returns all countries in a single request.
+https://dhis2-app-course.ifi.uio.no/api?paging=false
+
+Write a query that returns 20 countries.
+https://dhis2-app-course.ifi.uio.no/api?pageSize=20
+
+Write a query that returns data about just Norway
+https://dhis2-app-course.ifi.uio.no/api?search=Norway
+
+Write a query that returns data about just African countries
+https://dhis2-app-course.ifi.uio.no/api?ContinentCode=AF
+
+Write a query that returns data about African, South American and Oceanian countries.
+https://dhis2-app-course.ifi.uio.no/api?Continent=Africa,South%20America,Oceania
+
+Write a query that returns the 25 largest countries by population.
+https://dhis2-app-course.ifi.uio.no/api?order=Population:DESC&pageSize=25
+
+Write a query that returns the 10 fastest growing countries in Africa
+https://dhis2-app-course.ifi.uio.no/api?Continent=Africa&order=PopulationGrowth:DESC&pageSize=10
+
+Write a query that returns the 6-10th largest countries in Europe.
+https://dhis2-app-course.ifi.uio.no/api?Continent=Europe&order=Population:DESC&page=2&pageSize=5
+
+Write a query that returns all countries who's name contains "ma", that is located in North America, Europe or Africa sorted from smallest population to largest.
+https://dhis2-app-course.ifi.uio.no/api?search=ma&Continent=North%20America,Europe,Africa&order=Population:ASC&paging=false
